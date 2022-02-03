@@ -1,0 +1,34 @@
+.button1 {
+    top: 250px;
+    left:25px;
+    width:150px;
+    height:40px;
+    position: absolute;
+     
+    }
+
+.button2 {
+        top: 200px;
+        right: 50px;
+        width:100px;
+        height:40px;
+        position: absolute;
+         
+        }
+
+.button3 {
+            top: 300px;
+            right: 50px;
+            width:100px;
+            height:40px;
+            position: absolute;
+             
+            }
+            .button4 {
+                top: 350px;
+                left: 25px;
+                width:150px;
+                height:40px;
+                position: absolute;
+                 
+                }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script>
+            function setup() {
+                document.getElementById('buttonid').addEventListener('click', openDialog);
+                function openDialog() {
+                    document.getElementById('fileid').click();
+                }
+                
+                
+            }
+        </script> 
+    </head>
+<body onload="setup()">
+
+<h1></h1>
+<h2>Product Detection</h2>
+
+
+<input id='fileid' type='file' name='filename' multiple hidden/>
+<input class="button1" id='buttonid' type='button' value='Add New Product' /> 
+<br>
+<button  class="button2">Train</button><br>
+<button class="button3">Predict</button>
+<button  class="button4">Annotate</button><br>
+
+<p id="demo"></p>
+
+
+
+</body>
+</html>
