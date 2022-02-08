@@ -1,0 +1,45 @@
+.button1 {
+    top: 250px;
+    left:100px;
+    width:150px;
+    height:40px;
+    position: absolute;
+     
+    }
+
+.button2 {
+    
+        top: 50px;
+        right: 250px;
+        width:100px;
+        height:40px;
+        position: absolute;
+         
+        }
+
+.button3 {
+            top: 50px;
+            right: 50px;
+            width:100px;
+            height:40px;
+            position: absolute;
+             
+            }
+.button4 {
+    top: 350px;
+    left:100px;
+    width:150px;
+    height:40px;
+    position: absolute;
+                 
+        }
+
+.train-callback {
+    top: 350px;
+    right:200px;
+    width:150px;
+    height:40px;
+    position: absolute;
+             
+        }
+                
