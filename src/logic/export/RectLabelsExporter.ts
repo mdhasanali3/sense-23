@@ -36,8 +36,12 @@ export class RectLabelsExporter {
                 const fileContent: string = RectLabelsExporter.wrapRectLabelsIntoYOLO(imageData);
                 if (fileContent) {
                     const fileName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.txt');
+
+                    const imageName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.jpg');
+
                     try {
                         zip.file(fileName, fileContent);
+                        zip.file(imageName, imageData.fileData);
                     } catch (error) {
                         // TODO
                         throw new Error(error as string);
