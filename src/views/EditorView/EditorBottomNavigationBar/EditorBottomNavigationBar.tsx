@@ -8,6 +8,7 @@ import {ISize} from "../../../interfaces/ISize";
 import {ContextType} from "../../../data/enums/ContextType";
 import classNames from "classnames";
 import {ImageActions} from "../../../logic/actions/ImageActions";
+import {PasteActions} from "../../../logic/actions/PasteActions";
 
 interface IProps {
     size: ISize;
@@ -54,6 +55,15 @@ const EditorBottomNavigationBar: React.FC<IProps> = ({size, imageData, totalImag
                 onClick={() => ImageActions.getNextImage()}
                 isDisabled={activeImageIndex === totalImageCount - 1}
                 externalClassName={"right"}
+            />
+
+            <ImageButton
+                image={"ico/paste.png"}
+                imageAlt={"next"}
+                buttonSize={{width: 25, height: 25}}
+                onClick={() => PasteActions.getPreviousImageLabel()}
+                isDisabled={activeImageIndex === totalImageCount - 1}
+                externalClassName={"paste"}
             />
         </div>
     );
