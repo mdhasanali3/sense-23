@@ -52,6 +52,14 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.EXPORT_ANNOTATIONS))
             },
             {
+                name: 'save Annotations',
+                description: 'save annotations to server',
+                imageSrc: 'ico/save-labels.png',
+                imageAlt: 'export-labels',
+                disabled: false,
+                onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.SAVE_ANNOTATIONS))
+            },
+            {
                 name: 'Load AI Model',
                 description: 'Load our pre-trained annotation models',
                 imageSrc: 'ico/ai.png',
