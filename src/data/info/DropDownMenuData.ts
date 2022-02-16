@@ -1,6 +1,8 @@
 import {updateActivePopupType} from '../../store/general/actionCreators';
 import {PopupWindowType} from '../enums/PopupWindowType';
 import {store} from '../../index';
+//import { Link } from 'react-router-dom';
+import Prediction from '../../prediction/Prediction';
 
 export type DropDownMenuNode = {
     name: string
@@ -55,7 +57,7 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 name: 'save Annotations',
                 description: 'save annotations to server',
                 imageSrc: 'ico/save-labels.png',
-                imageAlt: 'export-labels',
+                imageAlt: 'save-labels',
                 disabled: false,
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.SAVE_ANNOTATIONS))
             },
@@ -90,6 +92,14 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 imageAlt: 'bug',
                 disabled: false,
                 onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
+            },
+            {
+                name: 'prediction',
+                imageSrc: 'ico/prediction.png',
+                imageAlt: 'prediction',
+                disabled: false,
+                onClick: () => window.open('prediction','_blank')
+        //'<Link to="/signup" >Sign up</Link>'
             }
         ]
     },
