@@ -14,6 +14,7 @@ import { ClipLoader } from "react-spinners";
 import ImportLabelPopup from "./ImportLabelPopup/ImportLabelPopup";
 import ExportLabelPopup from "./ExportLabelsPopup/ExportLabelPopup";
 import AlertPopup from './AlertPopup/AlertPopup';
+import ParamPopup from './ParamPopup/ParamPopup';
 
 interface IProps {
     activePopupType: PopupWindowType;
@@ -37,6 +38,10 @@ const PopupView: React.FC<IProps> = ({ activePopupType }) => {
                 return <InsertLabelNamesPopup
                     isUpdate={true}
                 />;
+            case PopupWindowType.PARAM:
+                return <ParamPopup
+                    isUpdate={false}
+                    />;
             case PopupWindowType.EXIT_PROJECT:
                 return <ExitProjectPopup />;
             case PopupWindowType.ALERT_PROJECT:

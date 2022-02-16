@@ -92,6 +92,31 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
             }
         ]
+    },
+    {
+        name: 'Training Parameters',
+        imageSrc: 'ico/plant.png',
+        imageAlt: 'community',
+        disabled: false,
+        children: [
+            {
+                name: 'Batch Size',
+                
+                imageSrc: 'ico/documentation.png',
+                imageAlt: 'documentation',
+                disabled: false,
+                //onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
+                onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.PARAM))
+            },
+            {
+                name: 'Number of epochs',
+                
+                imageSrc: 'ico/bug.png',
+                imageAlt: 'bug',
+                disabled: false,
+                onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
+            }
+        ]
+        
     }
 ]
-
