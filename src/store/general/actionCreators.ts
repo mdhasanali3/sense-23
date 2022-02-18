@@ -1,5 +1,5 @@
 import {ISize} from '../../interfaces/ISize';
-import {GeneralActionTypes, ProjectData,  } from './types';
+import {GeneralActionTypes, ProjectData} from './types';
 import {Action} from '../Actions';
 import {PopupWindowType} from '../../data/enums/PopupWindowType';
 import {CustomCursorStyle} from '../../data/enums/CustomCursorStyle';
@@ -76,24 +76,6 @@ export function updateProjectData(projectData: ProjectData): GeneralActionTypes 
         },
     };
 }
-
-// export function updateBatch(batch: string): GeneralActionTypes {
-//     return {
-//         type: Action.UPDATE_BATCH,
-//         payload: {
-//             batch,
-//         },
-//     };
-// }
-
-// export function updateEpoch(epoch: string): GeneralActionTypes {
-//     return {
-//         type: Action.UPDATE_EPOCH,
-//         payload: {
-//             epoch,
-//         },
-//     };
-// }
 
 export function updateZoom(zoom: number): GeneralActionTypes {
     return {

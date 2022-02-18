@@ -15,11 +15,8 @@ const initialState: GeneralState = {
     projectData: {
         type: null,
         name: 'my-project-name',
-        epoch: '',
-        batch: '',
     },
-    zoom: ViewPointSettings.MIN_ZOOM,
-    
+    zoom: ViewPointSettings.MIN_ZOOM
 };
 
 export function generalReducer(
@@ -81,18 +78,6 @@ export function generalReducer(
                 zoom: action.payload.zoom
             }
         }
-        // case Action.UPDATE_BATCH: {
-        //     return {
-        //         ...state,
-        //         batch: action.payload.batch
-        //     }
-        // }
-        // case Action.UPDATE_EPOCH: {
-        //     return {
-        //         ...state,
-        //         epoch: action.payload.epoch
-        //     }
-        // }
         case Action.UPDATE_ENABLE_PER_CLASS_COLORATION_STATUS: {
             return {
                 ...state,
