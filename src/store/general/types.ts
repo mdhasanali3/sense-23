@@ -8,6 +8,8 @@ import {ProjectType} from '../../data/enums/ProjectType';
 export type ProjectData = {
     type: ProjectType;
     name: string,
+    batch: string,
+    epoch: string;
 }
 
 export type GeneralState = {
@@ -21,6 +23,8 @@ export type GeneralState = {
     activeContext: ContextType;
     projectData: ProjectData;
     zoom: number;
+    // epoch: string;
+    // batch: string;
 }
 
 interface UpdateProjectData {
@@ -29,6 +33,19 @@ interface UpdateProjectData {
         projectData: ProjectData;
     }
 }
+// interface UpdateBatch {
+//     type: typeof Action.UPDATE_BATCH,
+//     payload: {
+//         batch: string;
+//     }
+// }
+
+// interface UpdateEpoch {
+//     type: typeof Action.UPDATE_EPOCH,
+//     payload: {
+//         epoch: string;
+//     }
+// }
 
 interface UpdateWindowSize {
     type: typeof Action.UPDATE_WINDOW_SIZE;
@@ -103,3 +120,5 @@ export type GeneralActionTypes = UpdateProjectData
     | UpdateCrossHairVisibleStatus
     | UpdateZoom
     | UpdatePerClassColoration
+    // | UpdateBatch
+    // | UpdateEpoch

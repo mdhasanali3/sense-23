@@ -33,6 +33,14 @@ export class GeneralSelector {
         return store.getState().general.projectData.name;
     }
 
+    // public static getProjectEpoch(): string {
+    //     return store.getState().general.epoch;
+    // }
+
+    // public static getProjectBatch(): string {
+    //     return store.getState().general.batch;
+    // }
+
     public static getProjectType(): ProjectType {
         return store.getState().general.projectData.type;
     }
