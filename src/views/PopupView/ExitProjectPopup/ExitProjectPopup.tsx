@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 import {ImageData, LabelName} from "../../../store/labels/types";
 import {PopupActions} from "../../../logic/actions/PopupActions";
 import {ProjectData} from "../../../store/general/types";
-import {updateProjectData} from "../../../store/general/actionCreators";
+import { updateProjectData} from "../../../store/general/actionCreators";
 
 interface IProps {
     updateActiveImageIndex: (activeImageIndex: number) => any;
@@ -22,6 +22,8 @@ interface IProps {
     updateImageData: (imageData: ImageData[]) => any;
     updateFirstLabelCreatedFlag: (firstLabelCreatedFlag: boolean) => any;
     updateProjectData: (projectData: ProjectData) => any;
+    // updateEpoch: (epoch: string) =>any;
+    // updateBatch: (batch: string) =>any;
 }
 
 const ExitProjectPopup: React.FC<IProps> = (props) => {
@@ -30,6 +32,8 @@ const ExitProjectPopup: React.FC<IProps> = (props) => {
         updateLabelNames,
         updateActiveImageIndex,
         updateImageData,
+        // updateEpoch,
+        // updateBatch,
         updateFirstLabelCreatedFlag,
         updateProjectData
     } = props;
@@ -47,7 +51,9 @@ const ExitProjectPopup: React.FC<IProps> = (props) => {
     const onAccept = () => {
         updateActiveLabelNameId(null);
         updateLabelNames([]);
-        updateProjectData({type: null, name: "my-project-name"});
+        updateProjectData({type: null, name: "my-project-name",batch: '', epoch: ''});
+        // updateBatch('0');
+        // updateEpoch('0');
         updateActiveImageIndex(null);
         updateImageData([]);
         updateFirstLabelCreatedFlag(false);
@@ -75,6 +81,8 @@ const mapDispatchToProps = {
     updateProjectData,
     updateActiveImageIndex,
     updateImageData,
+    // updateBatch,
+    // updateEpoch,
     updateFirstLabelCreatedFlag
 };
 
