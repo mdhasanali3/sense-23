@@ -47,7 +47,7 @@ const AlertProjectPopup: React.FC<IProps> = (props) => {
     const onAccept = () => {
         updateActiveLabelNameId(null);
         updateLabelNames([]);
-        updateProjectData({type: null, name: "my-project-name"});
+        updateProjectData({type: null, name: "project-name",batch: '', epoch: ''});
         updateActiveImageIndex(null);
         updateImageData([]);
         updateFirstLabelCreatedFlag(false);

@@ -9,6 +9,7 @@ $width: 300px;
 }
 
 .TextInput {
+  width: $width/2;
   height: $width/6;
   overflow: hidden;
   position: relative;

@@ -14,7 +14,9 @@ const initialState: GeneralState = {
     enablePerClassColoration: true,
     projectData: {
         type: null,
-        name: 'my-project-name',
+        name: 'project-name',
+        epoch: '',
+        batch: '',
     },
     zoom: ViewPointSettings.MIN_ZOOM
 };

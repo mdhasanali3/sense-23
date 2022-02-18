@@ -8,6 +8,8 @@ import {ProjectType} from '../../data/enums/ProjectType';
 export type ProjectData = {
     type: ProjectType;
     name: string,
+    batch: string,
+    epoch: string;
 }
 
 export type GeneralState = {
