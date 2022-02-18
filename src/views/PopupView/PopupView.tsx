@@ -38,10 +38,10 @@ const PopupView: React.FC<IProps> = ({ activePopupType }) => {
                 return <InsertLabelNamesPopup
                     isUpdate={true}
                 />;
-            case PopupWindowType.PARAM:
+            /*case PopupWindowType.PARAM:
                 return <ParamPopup
                     isUpdate={false}
-                    />;
+                    />;*/
             case PopupWindowType.EXIT_PROJECT:
                 return <ExitProjectPopup />;
             case PopupWindowType.ALERT_PROJECT:
