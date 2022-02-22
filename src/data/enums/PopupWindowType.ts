@@ -11,5 +11,5 @@ export enum PopupWindowType {
     EXIT_PROJECT = 'EXIT_PROJECT',
     LOADER = 'LOADER',
     ALERT_PROJECT = 'ALERT_PROJECT',
-    PARAM = 'PARAM'
+    SHOW_LOG = "SHOW_LOG"
 }

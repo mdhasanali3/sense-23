@@ -11,6 +11,7 @@ import {Settings} from '../../../settings/Settings';
 import {ProjectData} from '../../../store/general/types';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 import { TextButton } from '../../Common/TextButton/TextButton';
+import { store } from '../../..';
 
 interface IProps {
     updateActivePopupTypeAction: (activePopupType: PopupWindowType) => any;
@@ -66,11 +67,10 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
        
     };
 
-
-    const start_training = () => {
+    /*const start_training = () => {
         setprojectintrain(true);
       
-    };
+    };*/
 
 
     
@@ -87,10 +87,10 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                     >
                         <img
                             draggable={false}
-                            alt={'make-sense'}
-                            src={'/make-sense-ico-transparent.png'}
+                            alt={''}
+                            src={'ico/sense.png'}
                         />
-                        Make Sense
+                        Sense-23
                     </div>
                 </div>
                 <div className='NavigationBarGroupWrapper'>
@@ -120,8 +120,9 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                     />
                     <TextButton
                     label={'Start Training'}
-                    onClick={start_training}
+                    onClick={() => store.dispatch(updateActivePopupType(PopupWindowType.SHOW_LOG))}
                     externalClassName={'start-training-button'}
+                    
                     />
                 </div>
                 <div className='NavigationBarGroupWrapper'>

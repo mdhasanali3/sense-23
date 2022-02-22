@@ -14,7 +14,7 @@ import { ClipLoader } from "react-spinners";
 import ImportLabelPopup from "./ImportLabelPopup/ImportLabelPopup";
 import ExportLabelPopup from "./ExportLabelsPopup/ExportLabelPopup";
 import AlertPopup from './AlertPopup/AlertPopup';
-import ParamPopup from './ParamPopup/ParamPopup';
+import ShowLogPopup from './ShowLogPopup/ShowLogPopup'
 
 interface IProps {
     activePopupType: PopupWindowType;
@@ -46,6 +46,8 @@ const PopupView: React.FC<IProps> = ({ activePopupType }) => {
                 return <ExitProjectPopup />;
             case PopupWindowType.ALERT_PROJECT:
                 return <AlertPopup />;
+            case PopupWindowType.SHOW_LOG:
+                return <ShowLogPopup />;
             case PopupWindowType.IMPORT_IMAGES:
                 return <LoadMoreImagesPopup />;
             case PopupWindowType.LOAD_AI_MODEL:

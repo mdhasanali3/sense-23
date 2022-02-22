@@ -54,7 +54,7 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.EXPORT_ANNOTATIONS))
             },
             {
-                name: 'save Annotations',
+                name: 'Save Annotations',
                 description: 'save annotations to server',
                 imageSrc: 'ico/save-labels.png',
                 imageAlt: 'save-labels',
@@ -102,31 +102,5 @@ export const DropDownMenuData: DropDownMenuNode[] = [
         //'<Link to="/signup" >Sign up</Link>'
             }
         ]
-    },
-    {
-        name: 'Training Parameters',
-        imageSrc: 'ico/plant.png',
-        imageAlt: 'community',
-        disabled: false,
-        children: [
-            {
-                name: 'Batch Size',
-                
-                imageSrc: 'ico/documentation.png',
-                imageAlt: 'documentation',
-                disabled: false,
-                //onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
-                onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.PARAM))
-            },
-            {
-                name: 'Number of epochs',
-                
-                imageSrc: 'ico/bug.png',
-                imageAlt: 'bug',
-                disabled: false,
-                onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
-            }
-        ]
-        
     }
 ]
