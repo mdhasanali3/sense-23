@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useEffect, useState } from 'react';
 import './TopNavigationBar.scss';
 import StateBar from '../StateBar/StateBar';
 import {PopupWindowType} from '../../../data/enums/PopupWindowType';
@@ -11,7 +11,7 @@ import {Settings} from '../../../settings/Settings';
 import {ProjectData} from '../../../store/general/types';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 import { TextButton } from '../../Common/TextButton/TextButton';
-import { store } from '../../..';
+import axios, {AxiosResponse} from 'axios'
 
 interface IProps {
     updateActivePopupTypeAction: (activePopupType: PopupWindowType) => any;
@@ -72,8 +72,8 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
       
     };*/
 
+ 
 
-    
     const closePopup = () => props.updateActivePopupTypeAction(PopupWindowType.EXIT_PROJECT)
 
     return (
@@ -120,7 +120,18 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                     />
                     <TextButton
                     label={'Start Training'}
-                    onClick={() => store.dispatch(updateActivePopupType(PopupWindowType.SHOW_LOG))}
+                    onClick={() => 
+                         {
+                          
+                          console.log(props.projectData,' the projectdata')
+                          axios.post('http://localhost:5000/hyperparameter', props.projectData)
+                                      .then(res => console.log(res,'hyperparameter json res'))
+                                      .catch(err => console.warn(err,'hyperparameter error '))
+
+                       
+                      }
+                        //store.dispatch(updateActivePopupType(PopupWindowType.SHOW_LOG))
+                    }
                     externalClassName={'start-training-button'}
                     
                     />
