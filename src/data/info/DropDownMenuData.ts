@@ -163,7 +163,7 @@ export class RectLabelsExporter {
             zip.generateAsync({type:'blob'})
                 .then((content: Blob) => {
                     //saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
-                    axios.post('http://localhost:5000/save_annotation', `${ExporterUtil.getExportFileName()}.zip`)
+                    axios.post(`http://localhost:5000/save_annotation/${ExporterUtil.getExportFileName()}.zip`, content)//`${ExporterUtil.getExportFileName()}.zip`)
                     .then(res => console.log(res,' image & label zip res of axios'))
                     .catch(err => console.warn(err,'error from image label zip'))
                 });
