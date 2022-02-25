@@ -125,7 +125,12 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 imageSrc: 'ico/prediction.png',
                 imageAlt: 'prediction',
                 disabled: false,
-                onClick: () => window.open('prediction','_blank')
+                onClick: () => {window.open('prediction','_blank')
+                // axios.get('http://35.184.91.84:5000/prediction')
+                // .then(pred_json => console.log(pred_json,'prediction json received'))
+                // .catch(err => console.warn(err,'hyperparameter error '))
+
+            }
         //'<Link to="/signup" >Sign up</Link>'
             }
         ]
@@ -164,8 +169,8 @@ export class RectLabelsExporter {
             const labelNames: LabelName[] = LabelsSelector.getLabelNames();
         
             const yamlData = {
-                train: '../train/images',
-                val: '../valid/images',
+                train: 'dataset/train/images',
+                val: 'dataset/valid/images',
                 nc: labelNames.length,
                 names: [],
             } 
@@ -188,7 +193,7 @@ export class RectLabelsExporter {
             zip.generateAsync({type:'blob'})
                 .then((content: Blob) => {
                     //saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
-                    axios.post(`http://localhost:5000/save_annotation/${ExporterUtil.getExportFileName()}.zip`, content)//`${ExporterUtil.getExportFileName()}.zip`)
+                    axios.post(`http://35.184.91.84:5000/save_annotation/${ExporterUtil.getExportFileName()}.zip`, content)//`${ExporterUtil.getExportFileName()}.zip`)
                     .then(res => console.log(res,' image & label zip res of axios'))
                     .catch(err => console.warn(err,'error from image label zip'))
                 });

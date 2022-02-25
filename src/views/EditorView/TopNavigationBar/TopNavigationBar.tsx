@@ -124,7 +124,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                          {
                           
                           console.log(props.projectData,' the projectdata')
-                          axios.post('http://localhost:5000/hyperparameter', props.projectData)
+                          axios.post('http://35.184.91.84:5000/hyperparameter', props.projectData)
                                       .then(res => console.log(res,'hyperparameter json res'))
                                       .catch(err => console.warn(err,'hyperparameter error '))
 

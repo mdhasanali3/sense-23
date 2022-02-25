@@ -4,11 +4,11 @@ import MagicDropzone from "react-magic-dropzone";
 //import { useRef, useState, useEffect } from "react";
 import "./styles.scss";
 //import Webcam from "react-webcam";
-
+import axios from 'axios';
 const tf = require('@tensorflow/tfjs');
 //const webcamElement = document.getElementById('webcam');
     
- const weights = "https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
+  let weights = "https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
 
 //https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
  //https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
@@ -25,16 +25,40 @@ const tf = require('@tensorflow/tfjs');
 
 */
 //'pa1','pa2','pa3',
-const names = ['pa1','pa2','pa3',
-  'person','bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
-               'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
-               'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
-               'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
-               'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
-               'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
-               'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
-               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
-               'hair drier', 'toothbrush']
+let names = [
+  //'pa1','pa2','pa3',
+  // 'person','bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+  //              'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+  //              'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
+  //              'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
+  //              'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+  //              'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
+  //              'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+  //              'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
+  //              'hair drier', 'toothbrush'
+              ]
+
+//const jsonData= require('./names_class.json'); 
+//console.log(jsonData.names);
+//35.184.91.84
+//let weights=""
+
+axios.get('http://35.184.91.84:5000/prediction')
+.then(pred_json => {
+   weights=pred_json['model_json']
+ names=pred_json['names']
+
+  console.log(pred_json,'prediction json received')})
+
+.catch(err => console.warn(err,'hyperparameter error '))
+
+
+// for (i = 0; i<jsonData.names.length; ++i) {
+//   names.push(jsonData.names[i]);
+// }
+
+
+
 const map = new Map();
 
 for (var i = 0; i < 100; ++i) {
@@ -286,6 +310,7 @@ const [boxes, scores, classes, valid_detections] = predictions;
 
 
   onImageChange = e => {
+    
     const c = document.getElementById("canvas");
     const ctx = c.getContext("2d");
     this.cropToCanvas(e.target, c, ctx);
