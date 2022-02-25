@@ -11,8 +11,14 @@ import {findIndex, findLast} from 'lodash';
 import {ISize} from '../../interfaces/ISize';
 import {NumberUtil} from '../../utils/NumberUtil';
 import {RectUtil} from '../../utils/RectUtil';
+import YAML from 'yaml' ;
+import fs,{writeFile} from 'fs' ;
+
+
 
 export class RectLabelsExporter {
+    
+    
     public static export(exportFormatType: AnnotationFormatType): void {
         switch (exportFormatType) {
             case AnnotationFormatType.YOLO:
@@ -31,15 +37,17 @@ export class RectLabelsExporter {
 
     private static exportAsYOLO(): void {
         const zip = new JSZip();
+        //const yaml = new YAML();
         LabelsSelector.getImagesData()
             .forEach((imageData: ImageData) => {
                 const fileContent: string = RectLabelsExporter.wrapRectLabelsIntoYOLO(imageData);
                 if (fileContent) {
                     const fileName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.txt');
-
+                  //  console.log('imgdata labelnameid ',imageData.labelNameIds)
                     const imageName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.jpg');
 
                     try {
+                        
                         zip.file(fileName, fileContent);
                         zip.file(imageName, imageData.fileData);
                     } catch (error) {
@@ -50,9 +58,38 @@ export class RectLabelsExporter {
             });
 
         try {
+        const labelNames: LabelName[] = LabelsSelector.getLabelNames();
+        
+        const yamlData = {
+            train: '../train/images',
+            val: '../valid/images',
+            nc: labelNames.length,
+            names: [],
+        } 
+              
+        for(let i=0;i<yamlData['nc'];i++)
+        {
+            yamlData['names'].push(labelNames[i].name)
+        }
+
+       let doc =JSON.stringify(yamlData)
+       //console.log('yaml ',yamlData)
+
+//        const da = YAML.stringify(doc);
+//        fs.writeFile('outpu.yaml', da);
+// console.log("da ",outpu.yaml)
+
+        try {
+            zip.file('data.json', doc);
+            
+        } catch (error) {
+            // TODO
+            throw new Error(error as string);
+        }
+
             zip.generateAsync({type:'blob'})
                 .then((content: Blob) => {
-                    saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
+                     saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
                 });
         } catch (error) {
             // TODO
@@ -63,6 +100,7 @@ export class RectLabelsExporter {
     public static wrapRectLabelIntoYOLO(labelRect: LabelRect, labelNames: LabelName[], imageSize: ISize): string {
         const snapAndFix = (value: number) => NumberUtil.snapValueToRange(value,0, 1).toFixed(6)
         const classIdx: string = findIndex(labelNames, {id: labelRect.labelId}).toString()
+       // console.log('class id  ',classIdx)
         const rectCenter = RectUtil.getCenter(labelRect.rect)
         const rectSize = RectUtil.getSize(labelRect.rect)
         const rawBBox: number[] = [
@@ -89,6 +127,10 @@ export class RectLabelsExporter {
             return null;
 
         const labelNames: LabelName[] = LabelsSelector.getLabelNames();
+
+        //console.log('1 labelnames names in',labelNames.name,labelNames.length)
+        //console.log('2 labelnames names',labelNames)
+
         const image: HTMLImageElement = ImageRepository.getById(imageData.id);
         const imageSize: ISize = {width: image.width, height: image.height}
         const labelRectsString: string[] = imageData.labelRects.map((labelRect: LabelRect) => {

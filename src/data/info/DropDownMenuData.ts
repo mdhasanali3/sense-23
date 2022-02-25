@@ -134,6 +134,7 @@ export const DropDownMenuData: DropDownMenuNode[] = [
 
 
 export class RectLabelsExporter {
+   
     public static save_annotation(): void {
        
                 RectLabelsExporter.saveAsYOLO();
@@ -160,6 +161,30 @@ export class RectLabelsExporter {
             });
 
         try {
+            const labelNames: LabelName[] = LabelsSelector.getLabelNames();
+        
+            const yamlData = {
+                train: '../train/images',
+                val: '../valid/images',
+                nc: labelNames.length,
+                names: [],
+            } 
+            for(let i=0;i<yamlData['nc'];i++)
+            {
+                yamlData['names'].push(labelNames[i].name)
+            }
+    
+           let da =JSON.stringify(yamlData)
+            try {
+                zip.file('data.json', da);
+          
+    
+            } catch (error) {
+                // TODO
+                throw new Error(error as string);
+            }
+    
+
             zip.generateAsync({type:'blob'})
                 .then((content: Blob) => {
                     //saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
