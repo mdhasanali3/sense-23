@@ -12,6 +12,9 @@ import {ProjectData} from '../../../store/general/types';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 import { TextButton } from '../../Common/TextButton/TextButton';
 import axios, {AxiosResponse} from 'axios'
+import { result } from 'lodash';
+import { losses } from '@tensorflow/tfjs';
+import { store } from '../../..';
 
 interface IProps {
     updateActivePopupTypeAction: (activePopupType: PopupWindowType) => any;
@@ -20,6 +23,7 @@ interface IProps {
 }
 
 const TopNavigationBar: React.FC<IProps> = (props) => {
+
     const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         event.target.setSelectionRange(0, event.target.value.length);
     };
@@ -125,12 +129,18 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                           
                           console.log(props.projectData,' the projectdata')
                           axios.post('http://35.184.91.84:5000/hyperparameter', props.projectData)
-                                      .then(res => console.log(res,'hyperparameter json res'))
+                                      .then(res => {
+                                          
+                                        console.log(res.data[1],'hyperparameter json res')
+                                        console.log(res.data[1[2['recall']]],'ia m second')
+
+                                        store.dispatch(updateActivePopupType(PopupWindowType.SHOW_LOG))
+                                      })
                                       .catch(err => console.warn(err,'hyperparameter error '))
 
                        
                       }
-                        //store.dispatch(updateActivePopupType(PopupWindowType.SHOW_LOG))
+                        
                     }
                     externalClassName={'start-training-button'}
                     

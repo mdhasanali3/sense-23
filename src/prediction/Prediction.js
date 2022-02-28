@@ -17,7 +17,7 @@ const tf = require('@tensorflow/tfjs');
   //'C:/Users/hasan/Downloads/bs 23 workshop/supershop/yolov5/yolov5s_saved_model/keras_metadata.pb');
 //'C:/Users/hasan/Downloads/bs 23 workshop/ss/tfj/public/web_model/model.json';
  
-
+//https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/web_model/model.json
 /*
 'Alpro-Fresh-Soy-Milk','Arla-Medium-Fat-Milk','Arla-Mild-Vanilla-Yoghurt','Arla-Natural-Yoghurt',
               'Arla-Sour-Milk','Bravo-Orange-Juice','Garant-Ecological-Medium-Fat-Milk','Oatly-Natural-Oatghurt',
@@ -45,7 +45,7 @@ let names = [
 
 axios.get('http://35.184.91.84:5000/prediction')
 .then(pred_json => {
-   weights=pred_json['model_json']
+   weights=`http://35.184.91.84:5000/${pred_json['model_json']}`
  names=pred_json['names']
 
   console.log(pred_json,'prediction json received')})

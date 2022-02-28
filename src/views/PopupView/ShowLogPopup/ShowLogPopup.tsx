@@ -31,7 +31,9 @@ const ShowLogPopup: React.FC<IProps> = (props) => {
         return(
             <div className="ShowLogPopupContent">
                 <div className="Message">
-                    Training log will be shown here.
+                    Training is complete. 
+                    now you can predict.
+                    log will be shown here.
                 </div>
             </div>
         )
