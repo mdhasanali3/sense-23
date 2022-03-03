@@ -131,9 +131,8 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                           axios.post('http://35.184.91.84:5000/hyperparameter', props.projectData)
                                       .then(res => {
                                           
-                                        console.log(res.data[1],'hyperparameter json res')
-                                        console.log(res.data[1[2['recall']]],'ia m second')
-
+                                        console.log(res.data[1]['eopch'],res.data[10]['precision'],res.data[10]['recall'],'hyperparameter json res')
+                                       
                                         store.dispatch(updateActivePopupType(PopupWindowType.SHOW_LOG))
                                       })
                                       .catch(err => console.warn(err,'hyperparameter error '))

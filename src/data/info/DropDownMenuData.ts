@@ -147,14 +147,19 @@ export class RectLabelsExporter {
 
     private static saveAsYOLO(): void {
         const zip = new JSZip();
+        let ii=0
         LabelsSelector.getImagesData()
             .forEach((imageData: ImageData) => {
                 const fileContent: string = RectLabelsExporter.wrapRectLabelsIntoYOLO(imageData);
                 if (fileContent) {
-                    const fileName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.txt');
+                    // const fileName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.txt');
 
-                    const imageName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.jpg');
-
+                    // const imageName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.jpg');
+                    const fileName : string = `pro (${ii}).txt`;
+                    //  console.log('imgdata labelnameid ',imageData.labelNameIds)
+                      const imageName : string = `pro (${ii}).jpg`;
+                ii++;
+    
                     try {
                         zip.file(fileName, fileContent);
                         zip.file(imageName, imageData.fileData);

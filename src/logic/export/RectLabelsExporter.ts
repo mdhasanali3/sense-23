@@ -37,14 +37,20 @@ export class RectLabelsExporter {
 
     private static exportAsYOLO(): void {
         const zip = new JSZip();
+        let ii=0
         //const yaml = new YAML();
         LabelsSelector.getImagesData()
             .forEach((imageData: ImageData) => {
                 const fileContent: string = RectLabelsExporter.wrapRectLabelsIntoYOLO(imageData);
                 if (fileContent) {
-                    const fileName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.txt');
-                  //  console.log('imgdata labelnameid ',imageData.labelNameIds)
-                    const imageName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.jpg');
+                //     const fileName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.txt');
+                //   //  console.log('imgdata labelnameid ',imageData.labelNameIds)
+                //     const imageName : string = imageData.fileData.name.replace(/\.[^/.]+$/, '.jpg');
+
+                const fileName : string = `pro (${ii}).txt`;
+                //  console.log('imgdata labelnameid ',imageData.labelNameIds)
+                  const imageName : string = `pro (${ii}).png`;
+            ii++;
 
                     try {
                         
