@@ -3,9 +3,6 @@ import {PopupWindowType} from '../enums/PopupWindowType';
 import {store} from '../../index';
 //import { Link } from 'react-router-dom';
 import Prediction from '../../prediction/Prediction';
-
-
-
 import {AnnotationFormatType} from '../../data/enums/AnnotationFormatType';
 import {ImageData, LabelName, LabelRect} from '../../store/labels/types';
 import {ImageRepository} from '../../logic/imageRepository/ImageRepository';
@@ -21,77 +18,70 @@ import {NumberUtil} from '../../utils/NumberUtil';
 import {RectUtil} from '../../utils/RectUtil';
 import axios from 'axios';
 
-
-
 export type DropDownMenuNode = {
     name: string
     description?: string
-    imageSrc: string
-    imageAlt: string
+    //imageSrc: string
+    //imageAlt: string
     disabled: boolean
     onClick?: () => void
     children?: DropDownMenuNode[]
 }
 
-
-
-
 export const DropDownMenuData: DropDownMenuNode[] = [
     {
         name: 'Actions',
-        imageSrc: 'ico/actions.png',
-        imageAlt: 'actions',
+        //imageSrc: 'ico/actions.png',
+        //imageAlt: 'actions',
         disabled: false,
         children: [
             {
                 name: 'Edit Labels',
                 description: 'Modify labels list',
-                imageSrc: 'ico/tags.png',
-                imageAlt: 'labels',
+                //imageSrc: 'ico/tags.png',
+                //imageAlt: 'labels',
                 disabled: false,
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.UPDATE_LABEL))
             },
             {
                 name: 'Import Images',
                 description: 'Load more images',
-                imageSrc: 'ico/camera.png',
-                imageAlt: 'images',
+                //imageSrc: 'ico/camera.png',
+                //imageAlt: 'images',
                 disabled: false,
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.IMPORT_IMAGES))
             },
             {
                 name: 'Import Annotations',
                 description: 'Import annotations from file',
-                imageSrc: 'ico/import-labels.png',
-                imageAlt: 'import-labels',
+                //imageSrc: 'ico/import-labels.png',
+                //imageAlt: 'import-labels',
                 disabled: false,
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.IMPORT_ANNOTATIONS))
             },
             {
                 name: 'Export Annotations',
                 description: 'Export annotations to file',
-                imageSrc: 'ico/export-labels.png',
-                imageAlt: 'export-labels',
+                //imageSrc: 'ico/export-labels.png',
+                //imageAlt: 'export-labels',
                 disabled: false,
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.EXPORT_ANNOTATIONS))
             },
             {
                 name: 'Save Annotations',
                 description: 'save annotations to server',
-                imageSrc: 'ico/save-labels.png',
-                imageAlt: 'save-labels',
+                //imageSrc: 'ico/save-labels.png',
+                //imageAlt: 'save-labels',
                 disabled: false,
                 onClick: () => {
                     RectLabelsExporter.save_annotation()
                 }
-                    
-                //store.dispatch(updateActivePopupType(PopupWindowType.SAVE_ANNOTATIONS))
             },
             {
                 name: 'Load AI Model',
                 description: 'Load our pre-trained annotation models',
-                imageSrc: 'ico/ai.png',
-                imageAlt: 'load-ai-model',
+                //imageSrc: 'ico/ai.png',
+                //imageAlt: 'load-ai-model',
                 disabled: false,
                 onClick :() => store.dispatch(updateActivePopupType(PopupWindowType.LOAD_AI_MODEL))
                 
@@ -100,30 +90,30 @@ export const DropDownMenuData: DropDownMenuNode[] = [
     },
     {
         name: 'Community',
-        imageSrc: 'ico/plant.png',
-        imageAlt: 'community',
+        //imageSrc: 'ico/plant.png',
+        //imageAlt: 'community',
         disabled: false,
         children: [
             {
                 name: 'Documentation',
                 description: 'Read more about Make Sense',
-                imageSrc: 'ico/documentation.png',
-                imageAlt: 'documentation',
+                //imageSrc: 'ico/documentation.png',
+                //imageAlt: 'documentation',
                 disabled: false,
                 onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
             },
             {
                 name: 'Bugs and Features',
                 description: 'Report a bug or propose a new feature',
-                imageSrc: 'ico/bug.png',
-                imageAlt: 'bug',
+                //imageSrc: 'ico/bug.png',
+                //imageAlt: 'bug',
                 disabled: false,
                 onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
             },
             {
-                name: 'prediction',
-                imageSrc: 'ico/prediction.png',
-                imageAlt: 'prediction',
+                name: 'Prediction',
+                //imageSrc: 'ico/prediction.png',
+                //imageAlt: 'prediction',
                 disabled: false,
                 onClick: () => {window.open('prediction','_blank')
                 // axios.get('http://35.184.91.84:5000/prediction')
@@ -134,14 +124,45 @@ export const DropDownMenuData: DropDownMenuNode[] = [
         //'<Link to="/signup" >Sign up</Link>'
             }
         ]
+    },
+    {
+        name: 'Model Type',
+        disabled: false,
+        children: [
+            {
+                name: 'YOLO v5n',
+                description: '',
+                disabled: false,
+                //onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
+            },
+            {
+                name: 'YOLO v5s',
+                description: '',
+                disabled: false,
+                //onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
+            },
+            {
+                name: 'YOLO v5m',
+                description: '',
+                disabled: false,
+                //onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
+
+            },
+            {
+                name: 'YOLO v5x',
+                description: '',
+                disabled: false,
+                //onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
+
+            }
+        ]
     }
 ]
 
 
 export class RectLabelsExporter {
    
-    public static save_annotation(): void {
-       
+    public static save_annotation(): void { 
                 RectLabelsExporter.saveAsYOLO();
     }         
 

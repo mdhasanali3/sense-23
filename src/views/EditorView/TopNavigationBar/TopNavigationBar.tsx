@@ -23,13 +23,10 @@ interface IProps {
 }
 
 const TopNavigationBar: React.FC<IProps> = (props) => {
-
+    //const [projectintrain, setprojectintrain] = useState(false);
     const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         event.target.setSelectionRange(0, event.target.value.length);
     };
-
-    const [projectintrain, setprojectintrain] = useState(false);
-
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
@@ -41,8 +38,6 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
             name: value
         })
     };
-
-
     
     const onChangee = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
@@ -70,12 +65,6 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
         })
        
     };
-
-    /*const start_training = () => {
-        setprojectintrain(true);
-      
-    };*/
-
  
 
     const closePopup = () => props.updateActivePopupTypeAction(PopupWindowType.EXIT_PROJECT)
@@ -89,11 +78,6 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                         className='Header'
                         onClick={closePopup}
                     >
-                        <img
-                            draggable={false}
-                            alt={''}
-                            src={'ico/sense.png'}
-                        />
                         Sense-23
                     </div>
                 </div>
@@ -108,7 +92,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                         onChange={onChange}
                         onFocus={onFocus}
                     />
-                     <div className='EPOCH'>EPOCH : </div>
+                    <div className='EPOCH'>EPOCH : </div>
                     <TextInput
                         isPassword={false}
                         value={props.projectData.epoch}
@@ -126,7 +110,6 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                     label={'Start Training'}
                     onClick={() => 
                          {
-                          
                           console.log(props.projectData,' the projectdata')
                           axios.post('http://35.184.91.84:5000/hyperparameter', props.projectData)
                                       .then(res => {
