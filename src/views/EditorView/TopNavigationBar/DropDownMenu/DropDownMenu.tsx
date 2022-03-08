@@ -89,11 +89,6 @@ const DropDownMenu: React.FC<IProps> = ({updatePreventCustomCursorStatusAction})
             onClick={(event) => onTabClick(index, event)}
             onMouseEnter={(event) => onMouseEnterTab(index, event)}
         >
-            <img
-                draggable={false}
-                src={data.imageSrc}
-                alt={data.imageAlt}
-            />
             {data.name}
         </div>
     }
@@ -117,7 +112,6 @@ const DropDownMenu: React.FC<IProps> = ({updatePreventCustomCursorStatusAction})
                         key={index}
                     >
                         <div className='Marker'/>
-                        <img src={element.imageSrc} alt={element.imageAlt}/>
                         {element.name}
                     </div>})}
             </div>

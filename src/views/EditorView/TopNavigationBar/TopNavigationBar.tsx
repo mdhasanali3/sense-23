@@ -84,6 +84,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                 <div className='NavigationBarGroupWrapper'>
                     <DropDownMenu/>
                 </div>
+                
                 <div className='NavigationBarGroupWrapper middle'>
                     <div className='ProjectName'>Project Name :</div>
                     <TextInput
