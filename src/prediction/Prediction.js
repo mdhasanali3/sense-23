@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MagicDropzone from "react-magic-dropzone";
 //import { useRef, useState, useEffect } from "react";
-import "./styles.scss";
+import "./styles.css";
 //import Webcam from "react-webcam";
 import axios from 'axios';
 const tf = require('@tensorflow/tfjs');
+//import data from  './model.json';
 //const webcamElement = document.getElementById('webcam');
-    
-  let weights = "https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
+
+let weights = "https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
 
 //https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
  //https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
@@ -87,12 +88,9 @@ const [modelWeight, modelHeight] = [640 , 640];
 
 
 export default class Prediction extends React.Component {
-
-
-  
    videoRef = React.createRef();
    canvasRef = React.createRef();
-  state = {
+    state = {
     model: null,
     preview: "",
     predictions: []
@@ -266,12 +264,6 @@ const [boxes, scores, classes, valid_detections] = predictions;
        if(value>0){
         console.log(key + ' = ' + value)
       }}
-
-
-
-
-
-
 };
 */
 
@@ -386,18 +378,28 @@ return (
 
 <>     
 
-<div className="bodypred">
-        
-        <h3>yoloV5</h3>
-       
+<div className="bodypred">        
+  <h3 align='center'>Prediction Page</h3>
+</div>
 
+<div className="Info">
+  
+  <div className="log">
+    <textarea id="train-log" name="trainlog" rows="4" cols="50">
+        Print the training log here
+    </textarea>
+  </div>
 
-      </div>
+  <div>
 
+  </div>
+  
+</div>
 
+<div className="Dropzone-page">
 
-      <div className="Dropzone-page">
-
+  
+  
   {this.state.model ?
  (
    <MagicDropzone className="Dropzone" accept="image/jpeg, image/png, .jpg, .jpeg, .png"
@@ -410,7 +412,7 @@ return (
        :
        ("Choose or drop a file.")}
 
-     <canvas id="canvas" width="640" height="640" />
+     <canvas id="canvas" width="400" height="400" />
    </MagicDropzone>
  )
  :
