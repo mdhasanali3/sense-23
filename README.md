@@ -1,5 +1,5 @@
 # product identification 
-This is a web based end to end object detection system.Here you can upload images, annotate them and start training. After compleating the train you can test with previously trained model. Here data and model versioning available as we hosted on GCP. And frontend was inspired from makesense.ai
+This is a web based end to end object detection system.Here you can upload images, annotate them and start training. After completing the train you can test with previously trained model. Here data and model versioning available as we hosted on GCP. And frontend was inspired from makesense.ai
 
 Backend code available here https://github.com/mdhasanali3/sense-23_backend 
 
