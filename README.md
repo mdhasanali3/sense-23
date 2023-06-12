@@ -4,7 +4,7 @@ This is a web based end to end object detection system.Here you can upload image
 Backend code available here https://github.com/mdhasanali3/sense-23_backend 
 
 Initial inference demo https://youtu.be/4XB2Jq11B2o
-
+if you want to run locally please try with node v16.15.1
 ## User Interface
 
 
